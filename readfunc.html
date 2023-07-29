@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Funcionários</title>
+    <link rel="stylesheet" type="text/css" href="employees.css"> <!-- Adicione esta linha para vincular o CSS -->
+</head>
+<body>
+        <!-- Os funcionários serão preenchidos aqui via JavaScript -->
+    </ul>
+        <button id="goBackButton">Voltar</button>
+    </div>
+
+    <script>
+        // Realizar a solicitação GET para obter a lista de funcionários
+        fetch('http://localhost:8080/api/employee')
+            .then(response => response.json())
+            .then(data => {
+                const employeeListElement = document.getElementById('employeeList');
+                data.forEach(employee => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Nome: ${employee.name}, CPF: ${employee.cpf}, Salário: ${employee.salary}`;
+                    employeeListElement.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao obter a lista de funcionários:', error);
+            });
+
+        // Adicionar redirecionamento para a página inicial ao clicar no botão "Voltar"
+        document.getElementById('goBackButton').addEventListener('click', function() {
+            window.location.href = 'index.html'; // Redireciona para a página index.html
+        });
+    </script>
+</body>
+</html>

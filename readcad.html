@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Cadastro de Funcionário</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Adicione esta linha para vincular o CSS -->
+</head>
+<body>
+    <h1>Cadastro de Funcionário</h1>
+    <form id="employeeForm">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required><br>
+
+        <label for="salary">Salário:</label>
+        <input type="number" id="salary" name="salary" required><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <button id="viewEmployeesButton">Ver todos os funcionários</button>
+
+    <script>
+        document.getElementById('employeeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formElement = event.target;
+            const formData = new FormData(formElement);
+            const requestData = {};
+
+            formData.forEach((value, key) => {
+                requestData[key] = value;
+            });
+
+            // Realizar a solicitação POST para a URL desejada
+            fetch('http://localhost:8080/api/employee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Resposta:', data);
+                // Aqui você pode manipular a resposta como desejado
+            })
+            .catch(error => {
+                console.error('Erro ao fazer o post:', error);
+            });
+        });
+
+        // Adicionando o redirecionamento ao clicar no botão
+        document.getElementById('viewEmployeesButton').addEventListener('click', function() {
+            window.location.href = 'employees.html'; // Redireciona para a página employees.html
+        });
+    </script>
+</body>
+</html>
