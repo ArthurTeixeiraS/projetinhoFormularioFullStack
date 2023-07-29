@@ -37,7 +37,7 @@
             align-items: center;
         }
 
-        #goBackButton {
+        .goBackButton {
             padding: 10px 20px;
             background-color: #007BFF;
             color: white;
@@ -45,22 +45,22 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin: 0 5px;
         }
 
         #goBackButton:hover {
             background-color: #0056b3;
         }
     </style>
+    <script src="./assets//js//formShow.js" defer></script>
 </head>
-
-
 <body>
     <h1>Cadastros</h1>
     <ul id="employeeList">
         
     </ul>
     <div class="back-button">
-    <button id="goBackButton" onclick="window.location.href='index.html'">Voltar</button>
+    <button class="goBackButton" onclick="window.location.href='index.html'">Voltar</button>
     </div>  
 </body>
 </html>

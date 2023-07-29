@@ -20,8 +20,6 @@ class ValidaFormulario {
     if(camposValidos && senhasValidas) {
       const formSend = new FormSend(this.formulario);
       await formSend.formGet()
-      const formShow = new FormShow(this.formulario)
-      formShow.formShow()
     }
   }
 
